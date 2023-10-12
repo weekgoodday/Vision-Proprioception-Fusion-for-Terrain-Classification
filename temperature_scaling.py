@@ -1,3 +1,5 @@
+# This file is modified based on https://github.com/gpleiss/temperature_scaling
+
 import torch
 from torch import nn, optim
 from torch.nn import functional as F
