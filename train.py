@@ -60,8 +60,6 @@ labelp = ['asphalt','grass','gravel','pavement','sand','brick','coated floor']
 
 # build model
 model = torch.hub.load('pytorch/vision:v0.10.0', 'mobilenet_v2', pretrained=True)
-model.eval()
-print("classifier changes: ", model.classifier)
 # for child in model.named_children():
 #     print(child)
 classifier = nn.Sequential(
@@ -70,6 +68,7 @@ classifier = nn.Sequential(
     nn.Linear(32, 7),
 )
 model.classifier = classifier
+print("classifier changes: ", model.classifier)
 # print(model(train_features).shape)
 # only finetune classifier
 for name, param in model.named_parameters():
@@ -84,6 +83,7 @@ model.to(device)
 loss_fn = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.classifier.parameters(), lr=learning_rate)
 for epoch in range(epochs):
+    model.train()
     loss_list = []
     total_correct = 0
     total = 0
@@ -108,6 +108,7 @@ for epoch in range(epochs):
     pbar.close()
     print(f"In epoch {epoch+1}, total train accuracy: {total_correct/total:>7f}, mean loss: {np.mean(loss_list):>7f}")
 
+    model.eval()
     pbar = tqdm(total = len(valid_dataloader))
     loss_list = []
     total_correct = 0
@@ -128,6 +129,7 @@ for epoch in range(epochs):
     print(f"In epoch {epoch+1}, total valid accuracy: {total_correct/total:>7f}, mean loss: {np.mean(loss_list):>7f}")
 
 # test
+model.eval()
 pbar = tqdm(total = len(test_dataloader))
 loss_list = []
 total_correct = 0
@@ -146,8 +148,7 @@ for batch, (X, y) in enumerate(test_dataloader):
     pbar.update(1)
 pbar.close()
 print(f"total test accuracy: {total_correct/total:>7f}, mean loss: {np.mean(loss_list):>7f}")
+
 #%%
 # save model
-torch.save(model.state_dict(), "./model/model1.pth")
-
-# %%
+torch.save(model.state_dict(), "./model/model997.pth")

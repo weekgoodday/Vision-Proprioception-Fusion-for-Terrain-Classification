@@ -6,6 +6,8 @@ The dataset is downloaded from [open access](https://ieee-dataport.org/open-acce
 ## Accuracy
 ### Image Net Part 
 after training 5 epochs on trainSet_c7_corrected.hdf5,
-| Backbone | Testset | Dark | Sim_fog | Sim_sun |
-| -------- | ------ | ------ | ------ | ------ |
-| MobileNetV2 | 99.55% | xx% | xx% | xx% | 
+| Experiment | Backbone | Testset | Dark | Sim_fog | Sim_sun |
+| :-: | :-----------: | :------: | :------: | :------: | :------: |
+| 1 | MobileNetV2 | **99.63%** | 53.27% | 68.98% | 65.72% | 
+| 2 | MobileNetV2 | **99.93%** | 21.22% | 26.57% | 37.59% | 
+| 3 | MobileNetV2 | **99.70%** | 25.15% | 54.95% | 47.84% | 
