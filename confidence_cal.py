@@ -18,8 +18,8 @@ temperature = 8
 
 # model architecture
 model = torch.hub.load('pytorch/vision:v0.10.0', 'mobilenet_v2')
-# for child in model.named_children():
-#     print(child)
+for child in model.named_children():
+    print(child)
 classifier = nn.Sequential(
     nn.Dropout(0.25),
     nn.Linear(1280, 32),
@@ -106,7 +106,7 @@ def plot_lines(bins_accuracy):
     y=bins_accuracy
     fig,ax=plt.subplots(figsize=(8,8))
     tick=np.arange(0,1.1,0.1)
-    plt.plot(x,y,color='orange',alpha=0.8,linestyle="--",linewidth=1,marker="o",markersize=10)
+    plt.plot(x,y,color='red',alpha=1,linestyle="--",linewidth=2,marker="o",markersize=20)
     line,=plt.plot([0,1],[0,1],ls='--',color='grey')
     line.set_dashes((3,7))
     ax.set_xticks(tick)

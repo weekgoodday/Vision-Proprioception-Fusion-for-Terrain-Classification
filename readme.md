@@ -5,6 +5,9 @@ The dataset is downloaded from [open access](https://ieee-dataport.org/open-acce
 
 ## Accuracy
 ### Image Net Part 
+Architecture:
+![img|center](./img/imagenet_architecture.png)
+
 After training 5 epochs on trainSet_c7_corrected.hdf5,
 
 | Experiment | Backbone | Testset | Dark | Sim_fog | Sim_sun |
@@ -49,6 +52,9 @@ On dark set: ECE: 0.042
 On fog set: ECE: 0.225
 On sun set: ECE: 0.223
 ```
+
+Set T as fixed number 1, 1.25, 2, 5, 8, the outputs are reorganized as below:
+![img|center](./img/Experiment_result.png)
 ## Usage
 ### Train Image Net
 1. Prepare data. Please download from [ieee](https://ieee-dataport.org/open-access/jackal-robot-7-class-terrain-dataset-vision-and-proprioception-sensors).
@@ -104,7 +110,7 @@ python eval.py
 
 5. Confidence calculation
 
-The temperature scaling code is partly based on [temperature_scaling](https://github.com/gpleiss/temperature_scaling)
+The temperature scaling code is partly based on [temperature_scaling](https://github.com/gpleiss/temperature_scaling).
 
 If you want to set temperature of logits (before softmax), you can designate in confidence_cal.py, then revise the input and output paths in confidence_cal.py, simply run:
 ```
